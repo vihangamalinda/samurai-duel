@@ -24,10 +24,10 @@ class Sprite {
     this.draw();
     this.position.y += this.velocity.y;
 
-    const isWithInCanvas =
+    const isWithinCanvas =
       this.position.y + this.height + this.velocity.y >= canvas.height;
-      
-    if (isWithInCanvas) {
+
+    if (isWithinCanvas) {
       this.velocity.y = 0;
     } else {
       this.velocity.y += gravity;
