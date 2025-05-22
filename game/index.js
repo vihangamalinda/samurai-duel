@@ -1,9 +1,16 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
-//window resolution=>16:9
-canvas.width = 1024;
-canvas.height = 576;
+const MOVEMENTS = {
+  jump: -20,
+  left: -5,
+  right: 5,
+};
+
+//window resolution=>16:9 (w: 1024 :H:576)
+// 1280x720
+canvas.width = 1280;
+canvas.height = 720;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -22,16 +29,19 @@ class Sprite {
       offset,
     };
     this.color = color;
+    this.isAttacking;
   }
 
   draw() {
-    c.fillStyle = this.color;
+    c.fillStyle = this.color.body;
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
 
     //Attack box
-    const { position, width, height, offset } = this.attackBox;
-    c.fillStyle = "green";
-    c.fillRect(position.x + offset.x, position.y, width, height);
+    if (this.isAttacking) {
+      const { position, width, height, offset } = this.attackBox;
+      c.fillStyle = this.color.attackBox;
+      c.fillRect(position.x + offset.x, position.y, width, height);
+    }
   }
 
   update() {
@@ -55,18 +65,26 @@ class Sprite {
       this.velocity.y += gravity;
     }
   }
+
+  attack() {
+    this.isAttacking = true;
+    setTimeout(() => {
+      this.isAttacking = false;
+    }, 100);
+  }
 }
 
 const player = new Sprite({
   position: { x: 0, y: 0 },
   velocity: { x: 0, y: 2 },
+  color: { body: "red", attackBox: "yellow" },
   offset: { x: 0, y: 0 },
 });
 
 const enemy = new Sprite({
   position: { x: 500, y: 0 },
   velocity: { x: 0, y: 2 },
-  color: "white",
+  color: { body: "white", attackBox: "purple" },
   offset: { x: -50, y: 0 },
 });
 
@@ -99,16 +117,26 @@ function animate() {
 
   // Player's velocity update to perform movements
   if (keys.a.pressed && player.lastKey === "a") {
-    player.velocity.x = -5;
+    player.velocity.x = MOVEMENTS.left;
   } else if (keys.d.pressed && player.lastKey === "d") {
-    player.velocity.x = 5;
+    player.velocity.x = MOVEMENTS.right;
   }
 
   // Enemy's velocity update to perform movements
   if (keys.arrowRight.pressed && enemy.lastKey === "ArrowRight") {
-    enemy.velocity.x = 5;
+    enemy.velocity.x = MOVEMENTS.right;
   } else if (keys.arrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
-    enemy.velocity.x = -5;
+    enemy.velocity.x = MOVEMENTS.left;
+  }
+
+  // Detect collision
+  //   console.log(player)
+  if (isAttackColliding(player, enemy)) {
+    console.log("Player Hit enemy");
+  }
+
+  if (isAttackColliding(enemy, player)) {
+    console.log("Enemy Hit Player");
   }
 }
 animate();
@@ -125,8 +153,11 @@ window.addEventListener("keydown", (event) => {
       break;
     case "w":
       if (player.velocity.y === 0) {
-        player.velocity.y = -20;
+        player.velocity.y = MOVEMENTS.jump;
       }
+      break;
+    case " ":
+      player.attack();
       break;
     case "ArrowRight":
       keys.arrowRight.pressed = true;
@@ -138,8 +169,11 @@ window.addEventListener("keydown", (event) => {
       break;
     case "ArrowUp":
       if (enemy.velocity.y === 0) {
-        enemy.velocity.y = -20;
+        enemy.velocity.y = MOVEMENTS.jump;
       }
+      break;
+    case "ArrowDown":
+      enemy.attack();
       break;
   }
 });
@@ -160,3 +194,14 @@ window.addEventListener("keyup", (event) => {
       break;
   }
 });
+function isAttackColliding(attacker, reciever) {
+  const isAttackWithinXRange =
+    attacker.attackBox.position.x + attacker.attackBox.width >=
+      reciever.position.x &&
+    attacker.attackBox.position.x <= reciever.position.x + reciever.width;
+  const isAttackWithinYRange =
+    attacker.attackBox.position.y <= reciever.position.y + reciever.height &&
+    attacker.attackBox.position.y + attacker.attackBox.height >=
+      reciever.position.y;
+  return isAttackWithinXRange && isAttackWithinYRange && attacker.isAttacking;
+}
