@@ -62,7 +62,6 @@ const player = new Sprite({
   velocity: { x: 0, y: 2 },
   offset: { x: 0, y: 0 },
 });
-// player.draw();
 
 const enemy = new Sprite({
   position: { x: 500, y: 0 },
@@ -70,9 +69,8 @@ const enemy = new Sprite({
   color: "white",
   offset: { x: -50, y: 0 },
 });
-// enemy.draw();
-console.log(player);
 
+// Horizontal -level movement tracking
 const keys = {
   a: {
     pressed: false,
@@ -87,8 +85,6 @@ const keys = {
     pressed: false,
   },
 };
-
-let lastKey;
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -118,7 +114,6 @@ function animate() {
 animate();
 
 window.addEventListener("keydown", (event) => {
-  console.log(event.key);
   switch (event.key) {
     case "d":
       keys.d.pressed = true;
