@@ -23,13 +23,14 @@ class Sprite {
     this.width = 50;
     this.lastKey;
     this.attackBox = {
-      position: this.position,
+      position: { x: position.x, y: position.y },
       width: 100,
       height: 50,
       offset,
     };
     this.color = color;
     this.isAttacking;
+    console.log(this);
   }
 
   draw() {
@@ -45,6 +46,7 @@ class Sprite {
   }
 
   update() {
+    this.attackBox.position = { ...this.position };
     this.draw();
     const isWithinCanvaseWalls =
       this.position.x + this.velocity.x >= 0 &&
@@ -196,9 +198,12 @@ window.addEventListener("keyup", (event) => {
 });
 function isAttackColliding(attacker, reciever) {
   const isAttackWithinXRange =
-    attacker.attackBox.position.x + attacker.attackBox.width >=
+    attacker.attackBox.position.x +
+      attacker.attackBox.width +
+      attacker.attackBox.offset.x >=
       reciever.position.x &&
-    attacker.attackBox.position.x <= reciever.position.x + reciever.width;
+    attacker.attackBox.position.x + attacker.attackBox.offset.x <=
+      reciever.position.x + reciever.width;
   const isAttackWithinYRange =
     attacker.attackBox.position.y <= reciever.position.y + reciever.height &&
     attacker.attackBox.position.y + attacker.attackBox.height >=
