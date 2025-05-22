@@ -9,17 +9,29 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
 class Sprite {
-  constructor({ position, velocity }) {
+  constructor({ position, velocity, color = "red", offset }) {
     this.position = position;
     this.velocity = velocity;
     this.height = 150;
     this.width = 50;
     this.lastKey;
+    this.attackBox = {
+      position: this.position,
+      width: 100,
+      height: 50,
+      offset,
+    };
+    this.color = color;
   }
 
   draw() {
-    c.fillStyle = "red";
+    c.fillStyle = this.color;
     c.fillRect(this.position.x, this.position.y, this.width, this.height);
+
+    //Attack box
+    const { position, width, height, offset } = this.attackBox;
+    c.fillStyle = "green";
+    c.fillRect(position.x + offset.x, position.y, width, height);
   }
 
   update() {
@@ -48,12 +60,15 @@ class Sprite {
 const player = new Sprite({
   position: { x: 0, y: 0 },
   velocity: { x: 0, y: 2 },
+  offset: { x: 0, y: 0 },
 });
 // player.draw();
 
 const enemy = new Sprite({
   position: { x: 500, y: 0 },
   velocity: { x: 0, y: 2 },
+  color: "white",
+  offset: { x: -50, y: 0 },
 });
 // enemy.draw();
 console.log(player);
@@ -99,7 +114,6 @@ function animate() {
   } else if (keys.arrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
     enemy.velocity.x = -5;
   }
-  // console.log("HI")
 }
 animate();
 
