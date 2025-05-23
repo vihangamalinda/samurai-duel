@@ -168,19 +168,14 @@ function animate() {
   }
 
   // Detect collision
-  //   console.log(player)
   if (isAttackColliding(player, enemy)) {
     enemy.health -= 1;
-    console.log(enemy.health);
     enemyHealthBar.style.width = enemy.health + "%";
-    // console.log("Player Hit enemy");
   }
 
   if (isAttackColliding(enemy, player)) {
     player.health -= 1;
-    console.log(player.health);
     playerHealthBar.style.width = player.health + "%";
-    console.log("Enemy Hit Player");
   }
 
   if (player.health < 1 || enemy.health < 1) {
