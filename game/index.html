@@ -1,8 +1,25 @@
 <head>
     <title>Samurai-Duel</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
 </head>
 
 <body>
-    <canvas></canvas>
+    <div class="main-container">
+        <div class="info-container">
+            <!-- Player's health -->
+            <div class="container">
+                <div class="player-health-container health-container-player"></div>
+                <div class="player-health"></div>
+            </div>
+            <!-- Timer -->
+            <div class="timer-container"></div>
+            <!-- Enemy health -->
+            <div class="container">
+                <div class="enemy-health-container health-container-enemy"></div>
+                <div class="enemy-health"></div>
+            </div>
+        </div>
+        <canvas></canvas>
+    </div>
     <script src="./index.js"></script>
 </body>

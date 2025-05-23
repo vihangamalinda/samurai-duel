@@ -1,6 +1,9 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
+const playerHealthBar = document.querySelector(".player-health");
+const enemyHealthBar = document.querySelector(".enemy-health");
+
 const MOVEMENTS = {
   jump: -20,
   left: -5,
@@ -30,6 +33,7 @@ class Sprite {
     };
     this.color = color;
     this.isAttacking;
+    this.health = 100;
     console.log(this);
   }
 
@@ -134,10 +138,16 @@ function animate() {
   // Detect collision
   //   console.log(player)
   if (isAttackColliding(player, enemy)) {
-    console.log("Player Hit enemy");
+    enemy.health -= 1;
+    console.log(enemy.health);
+    enemyHealthBar.style.width = enemy.health + "%";
+    // console.log("Player Hit enemy");
   }
 
   if (isAttackColliding(enemy, player)) {
+    player.health -= 1;
+    console.log(player.health);
+    playerHealthBar.style.width = player.health + "%";
     console.log("Enemy Hit Player");
   }
 }

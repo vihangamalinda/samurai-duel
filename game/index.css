@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: rgb(42, 165, 149);
+}
+.main-container {
+  position: relative;
+  display: inline-block;
+  /* width: 1280;
+  height: 720; */
+}
+
+.info-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.container {
+  position: relative;
+  height: 30px;
+  width: 100%;
+}
+
+.timer-container {
+  background-color: red;
+  height: 100px;
+  width: 100px;
+  flex-shrink: 0;
+  border-width: 5px;
+  border-radius: 50px;
+  border-style: solid;
+  border-color: beige;
+  /* border-color: azure; */
+}
+
+.health-container-player {
+  background-color: yellow;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.health-container-enemy {
+  background-color: yellow;
+  height: 30px;
+  width: 100%;
+}
+
+.player-health {
+  position: absolute;
+  background-color: green;
+  /* width:100%; */
+  top: 0;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+}
+
+.enemy-health {
+  position: absolute;
+  background-color: green;
+  /* width:100%; */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
