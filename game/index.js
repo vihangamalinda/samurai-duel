@@ -3,7 +3,9 @@ const c = canvas.getContext("2d");
 
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
+const timer = document.querySelector(".timer");
 
+const TIME_MAX = 60;
 const MOVEMENTS = {
   jump: -20,
   left: -5,
@@ -110,6 +112,36 @@ const keys = {
   },
 };
 
+function determineWinner({ player1, player2, timerRef }) {
+  clearTimeout(timerRef);
+  if (player1.health === player2.health) {
+    // Tie
+    console.log("TIE");
+  } else if (player1.health > player2.health) {
+    // player 1 win
+    console.log("player 1 win");
+  } else {
+    //player 2 win
+    console.log("player 2 win");
+  }
+}
+let timerCount = TIME_MAX;
+let timerRef;
+function decreaseTimer() {
+  timer.innerHTML = timerCount;
+
+  if (timerCount > 0) {
+    timerRef = setTimeout(() => {
+      timerCount--;
+      decreaseTimer();
+    }, 1000);
+  }
+  if (timerCount === 0) {
+    determineWinner({ player1: player, player2: enemy, timerRef });
+  }
+}
+decreaseTimer();
+
 function animate() {
   window.requestAnimationFrame(animate);
   c.fillStyle = "black";
@@ -149,6 +181,10 @@ function animate() {
     console.log(player.health);
     playerHealthBar.style.width = player.health + "%";
     console.log("Enemy Hit Player");
+  }
+
+  if (player.health < 1 || enemy.health < 1) {
+    determineWinner({ player1: player, player2: enemy, timerRef });
   }
 }
 animate();
