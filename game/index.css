@@ -34,19 +34,18 @@ body {
   border-radius: 50px;
   border-style: solid;
   border-color: beige;
- 
+
   /* border-color: azure; */
 }
 
-.timer{
-    color: aliceblue;
-    display: flex;
-    height: 100px; 
-    align-items: center;
-    justify-content: center;
-    font-size: 50px;
-    font-weight: bolder;
-
+.timer {
+  color: aliceblue;
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: bolder;
 }
 
 .health-container-player {
@@ -82,3 +81,17 @@ body {
   bottom: 0;
 }
 
+.result {
+  position: absolute;
+  color: aliceblue;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  font-weight: bolder;
+  color: rgb(173, 17, 17);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

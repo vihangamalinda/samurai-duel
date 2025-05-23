@@ -4,6 +4,7 @@ const c = canvas.getContext("2d");
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
 const timer = document.querySelector(".timer");
+const result = document.querySelector(".result");
 
 const TIME_MAX = 60;
 const MOVEMENTS = {
@@ -114,17 +115,24 @@ const keys = {
 
 function determineWinner({ player1, player2, timerRef }) {
   clearTimeout(timerRef);
+  let message;
   if (player1.health === player2.health) {
     // Tie
+    message = "Draw";
     console.log("TIE");
   } else if (player1.health > player2.health) {
     // player 1 win
+    message = "player 1 win";
     console.log("player 1 win");
   } else {
     //player 2 win
+    message = "player 2 win";
     console.log("player 2 win");
   }
+  result.innerText = message;
+  result.style.display = "flex";
 }
+
 let timerCount = TIME_MAX;
 let timerRef;
 function decreaseTimer() {
