@@ -21,7 +21,7 @@ canvas.height = 720;
 c.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
-class Sprite {
+class Character {
   constructor({ position, velocity, color = "red", offset }) {
     this.position = position;
     this.velocity = velocity;
@@ -83,14 +83,14 @@ class Sprite {
   }
 }
 
-const player = new Sprite({
+const player = new Character({
   position: { x: 0, y: 0 },
   velocity: { x: 0, y: 2 },
   color: { body: "red", attackBox: "yellow" },
   offset: { x: 0, y: 0 },
 });
 
-const enemy = new Sprite({
+const enemy = new Character({
   position: { x: 500, y: 0 },
   velocity: { x: 0, y: 2 },
   color: { body: "white", attackBox: "purple" },
