@@ -8,6 +8,9 @@ import {
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
+const WINDOW_WIDTH = 1280;
+const WINDOW_HEIGHT = 720;
+
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
 
@@ -19,14 +22,15 @@ const MOVEMENTS = {
 
 //window resolution=>16:9 (w: 1024 :H:576)
 // 1280x720
-canvas.width = 1280;
-canvas.height = 720;
+canvas.width = WINDOW_WIDTH;
+canvas.height = WINDOW_HEIGHT;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const customObj= new CustomObj(c);
-const {background,skelton,golem01,golem02,mushRoom} = customObj.objects.sprites;
-const {player,enemy} =customObj.objects.interactiveCharacters;
+const customObj = new CustomObj(c);
+const { background, skelton, golem01, golem02, mushRoom } =
+  customObj.objects.sprites;
+const { player, enemy } = customObj.objects.interactiveCharacters;
 
 // Horizontal -level movement tracking
 const keys = {

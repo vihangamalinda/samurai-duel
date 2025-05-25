@@ -1,5 +1,5 @@
 export default class Character {
-  constructor({ position, velocity, color = "red", offset ,sprite}) {
+  constructor({ position, velocity, color = "red", offset, sprite }) {
     this.position = position;
     this.velocity = velocity;
     this.height = 150;
@@ -17,9 +17,8 @@ export default class Character {
     this.sprite = sprite;
   }
 
-  getSprite(sprite){
-    sprite.position =this.position;
-
+  getSprite(sprite) {
+    sprite.position = this.position;
   }
 
   draw(canvasContext) {
@@ -30,9 +29,9 @@ export default class Character {
       this.width,
       this.height
     );
-  
+
     // this.sprite.update();
-        const sprite = this.sprite;
+    const sprite = this.sprite;
     sprite.getPositionUpdate(this.position);
     sprite.update();
 
@@ -58,7 +57,8 @@ export default class Character {
     this.position.y += this.velocity.y;
 
     const isWithinCanvasBottom =
-      this.position.y + this.height + this.velocity.y >= canvas.height +GROUND_LEVEL;
+      this.position.y + this.height + this.velocity.y >=
+      canvas.height + GROUND_LEVEL;
 
     if (isWithinCanvasBottom) {
       this.velocity.y = 0;
@@ -67,7 +67,6 @@ export default class Character {
     }
 
     this.draw(canvasContext);
-    
   }
 
   attack() {
