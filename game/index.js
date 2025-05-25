@@ -63,7 +63,7 @@ function animate() {
   golem02.update();
   mushRoom.update();
 
-  // User interation related updates
+  // User interaction related updates
   player.update(updateInfo);
   enemy.update(updateInfo);
 
