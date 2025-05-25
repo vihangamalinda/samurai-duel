@@ -64,8 +64,26 @@ const imageSrc = {
   golemBlueSrc: "./assets/golem_1_die.png",
   golemOrangeSrc: "./assets/golem_1_attack.png",
   mushRoomSrc: "./assets/mushroom-attack-with-stun.png",
-  warriorOneSrc: "./assets/warriorOne/Run.png",
-  warriorTwoSrc: "./assets/warriorTwo/Run.png",
+  warriorOneSrc: {
+    run: {
+      path: "./assets/warriorOne/Run.png",
+      frames: 6,
+    },
+    idle: {
+      path: "./assets/warriorOne/Idle.png",
+      frames: 10,
+    },
+  },
+  warriorTwoSrc: {
+    run: {
+      path: "./assets/warriorTwo/Run.png",
+      frames: 8,
+    },
+    idle: {
+      path: "./assets/warriorTwo/Idle.png",
+      frames: 11,
+    },
+  },
 };
 
 export { isAttackColliding, decreaseTimer, determineWinner, imageSrc };

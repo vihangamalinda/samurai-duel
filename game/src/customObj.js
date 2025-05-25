@@ -51,9 +51,9 @@ export default class CustomObj {
     const PlayerOneSprite = new Sprite({
       position: { x: 0, y: 0 },
       context: context,
-      frames: 6,
+      frames: imageSrc.warriorOneSrc.idle.frames,
       scale: { x: 2, y: 4 },
-      imageSrc: imageSrc.warriorOneSrc,
+      imageSrc: imageSrc.warriorOneSrc.idle.path,
       offset: {
         x: 110,
         y: 200,
@@ -63,9 +63,9 @@ export default class CustomObj {
     const PlayerTwoSprite = new Sprite({
       position: { x: 0, y: 0 },
       context: context,
-      frames: 8,
+      frames: imageSrc.warriorTwoSrc.idle.frames,
       scale: { x: 2, y: 4 },
-      imageSrc: imageSrc.warriorTwoSrc,
+      imageSrc: imageSrc.warriorTwoSrc.idle.path,
       offset: {
         x: 160,
         y: 305,
