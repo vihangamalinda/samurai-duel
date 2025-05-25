@@ -9,6 +9,9 @@ const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 const backgroundImageSrc = "./assets/background-with-coluds.png";
 const skeletonSrc = "./assets/skeleton_01_white_die.png";
+const golemBlueSrc = "./assets/golem_1_die.png";
+const golemOrangeSrc = "./assets/golem_1_attack.png";
+const mushRoomSrc = "./assets/mushroom-attack-with-stun.png";
 
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
@@ -30,7 +33,38 @@ const background = new Sprite({
   position: { x: 0, y: 0 },
   context: c,
   imageSrc: backgroundImageSrc,
-  destination: { x: 0, y: 0 },
+  frames: 1,
+});
+
+const skelton = new Sprite({
+  position: { x: 200, y: 230 },
+  imageSrc: skeletonSrc,
+  context: c,
+  frames: 13,
+  scale: { x: 2, y: 4 },
+});
+
+const golem01 = new Sprite({
+  position: { x: 1000, y: 230 },
+  imageSrc: golemBlueSrc,
+  context: c,
+  frames: 13,
+  scale: { x: 3, y: 4 },
+});
+
+const golem02 = new Sprite({
+  position: { x: 900, y: 230 },
+  imageSrc: golemOrangeSrc,
+  context: c,
+  frames: 11,
+  scale: { x: 3, y: 4 },
+});
+const mushRoom = new Sprite({
+  position: { x: 600, y: 230 },
+  imageSrc: mushRoomSrc,
+  context: c,
+  frames: 24,
+  scale: { x: 2, y: 4 },
 });
 
 const player = new Character({
@@ -71,8 +105,12 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   const updateInfo = { canvasContext: c, canvas: canvas };
-  //background related updates
+  //background related animation updates
   background.update();
+  skelton.update();
+  golem01.update();
+  golem02.update();
+  mushRoom.update();
 
   // User interation related updates
   player.update(updateInfo);
