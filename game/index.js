@@ -12,6 +12,8 @@ const skeletonSrc = "./assets/skeleton_01_white_die.png";
 const golemBlueSrc = "./assets/golem_1_die.png";
 const golemOrangeSrc = "./assets/golem_1_attack.png";
 const mushRoomSrc = "./assets/mushroom-attack-with-stun.png";
+const warriorOneSrc = "./assets/warriorOne/Run.png";
+const warriorTwoSrc = "./assets/warriorTwo/Run.png";
 
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
@@ -67,11 +69,36 @@ const mushRoom = new Sprite({
   scale: { x: 2, y: 4 },
 });
 
+const PlayerOneSprite = new Sprite({
+  position: { x: 0, y: 0 },
+  context: c,
+  frames: 6,
+  scale: { x: 2, y: 4 },
+  imageSrc: warriorOneSrc,
+  offset: {
+    x: 110,
+    y: 200,
+  },
+});
+
+const PlayerTwoSprite = new Sprite({
+  position: { x: 0, y: 0 },
+  context: c,
+  frames: 8,
+  scale: { x: 2, y: 4 },
+  imageSrc: warriorTwoSrc,
+  offset: {
+    x: 160,
+    y: 305,
+  },
+});
+
 const player = new Character({
   position: { x: 0, y: 0 },
   velocity: { x: 0, y: 2 },
   color: { body: "red", attackBox: "yellow" },
   offset: { x: 0, y: 0 },
+  sprite: PlayerOneSprite,
 });
 
 const enemy = new Character({
@@ -79,6 +106,7 @@ const enemy = new Character({
   velocity: { x: 0, y: 2 },
   color: { body: "white", attackBox: "purple" },
   offset: { x: -50, y: 0 },
+  sprite: PlayerTwoSprite,
 });
 
 // Horizontal -level movement tracking
