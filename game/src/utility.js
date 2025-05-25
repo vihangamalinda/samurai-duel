@@ -58,4 +58,14 @@ const isAttackColliding = (attacker, reciever) => {
   return isAttackWithinXRange && isAttackWithinYRange && attacker.isAttacking;
 };
 
-export { isAttackColliding, decreaseTimer, determineWinner };
+const imageSrc = {
+  backgroundImageSrc: "./assets/background-with-coluds.png",
+  skeletonSrc: "./assets/skeleton_01_white_die.png",
+  golemBlueSrc: "./assets/golem_1_die.png",
+  golemOrangeSrc: "./assets/golem_1_attack.png",
+  mushRoomSrc: "./assets/mushroom-attack-with-stun.png",
+  warriorOneSrc: "./assets/warriorOne/Run.png",
+  warriorTwoSrc: "./assets/warriorTwo/Run.png",
+};
+
+export { isAttackColliding, decreaseTimer, determineWinner, imageSrc };

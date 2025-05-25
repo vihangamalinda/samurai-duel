@@ -3,17 +3,12 @@ import {
   determineWinner,
   decreaseTimer,
   isAttackColliding,
+  imageSrc,
 } from "./src/utility.js";
 import Sprite from "./src/sprite.js";
+
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
-const backgroundImageSrc = "./assets/background-with-coluds.png";
-const skeletonSrc = "./assets/skeleton_01_white_die.png";
-const golemBlueSrc = "./assets/golem_1_die.png";
-const golemOrangeSrc = "./assets/golem_1_attack.png";
-const mushRoomSrc = "./assets/mushroom-attack-with-stun.png";
-const warriorOneSrc = "./assets/warriorOne/Run.png";
-const warriorTwoSrc = "./assets/warriorTwo/Run.png";
 
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
@@ -34,13 +29,13 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 const background = new Sprite({
   position: { x: 0, y: 0 },
   context: c,
-  imageSrc: backgroundImageSrc,
+  imageSrc: imageSrc.backgroundImageSrc,
   frames: 1,
 });
 
 const skelton = new Sprite({
   position: { x: 200, y: 230 },
-  imageSrc: skeletonSrc,
+  imageSrc: imageSrc.skeletonSrc,
   context: c,
   frames: 13,
   scale: { x: 2, y: 4 },
@@ -48,7 +43,7 @@ const skelton = new Sprite({
 
 const golem01 = new Sprite({
   position: { x: 1000, y: 230 },
-  imageSrc: golemBlueSrc,
+  imageSrc: imageSrc.golemBlueSrc,
   context: c,
   frames: 13,
   scale: { x: 3, y: 4 },
@@ -56,14 +51,14 @@ const golem01 = new Sprite({
 
 const golem02 = new Sprite({
   position: { x: 900, y: 230 },
-  imageSrc: golemOrangeSrc,
+  imageSrc: imageSrc.golemOrangeSrc,
   context: c,
   frames: 11,
   scale: { x: 3, y: 4 },
 });
 const mushRoom = new Sprite({
   position: { x: 600, y: 230 },
-  imageSrc: mushRoomSrc,
+  imageSrc: imageSrc.mushRoomSrc,
   context: c,
   frames: 24,
   scale: { x: 2, y: 4 },
@@ -74,7 +69,7 @@ const PlayerOneSprite = new Sprite({
   context: c,
   frames: 6,
   scale: { x: 2, y: 4 },
-  imageSrc: warriorOneSrc,
+  imageSrc: imageSrc.warriorOneSrc,
   offset: {
     x: 110,
     y: 200,
@@ -86,7 +81,7 @@ const PlayerTwoSprite = new Sprite({
   context: c,
   frames: 8,
   scale: { x: 2, y: 4 },
-  imageSrc: warriorTwoSrc,
+  imageSrc: imageSrc.warriorTwoSrc,
   offset: {
     x: 160,
     y: 305,
