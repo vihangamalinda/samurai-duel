@@ -1,5 +1,5 @@
 export default class Character {
-  constructor({ position, velocity, color = "red", offset }) {
+  constructor({ position, velocity, color = "red", offset ,sprite}) {
     this.position = position;
     this.velocity = velocity;
     this.height = 150;
@@ -14,7 +14,12 @@ export default class Character {
     this.color = color;
     this.isAttacking;
     this.health = 100;
-    console.log(this);
+    this.sprite = sprite;
+  }
+
+  getSprite(sprite){
+    sprite.position =this.position;
+
   }
 
   draw(canvasContext) {
@@ -25,6 +30,11 @@ export default class Character {
       this.width,
       this.height
     );
+  
+    // this.sprite.update();
+        const sprite = this.sprite;
+    sprite.getPositionUpdate(this.position);
+    sprite.update();
 
     //Attack box
     if (this.isAttacking) {
@@ -36,7 +46,7 @@ export default class Character {
 
   update({ canvasContext: canvasContext, canvas: canvas }) {
     this.attackBox.position = { ...this.position };
-    this.draw(canvasContext);
+    // this.draw(canvasContext);
     const isWithinCanvaseWalls =
       this.position.x + this.velocity.x >= 0 &&
       this.position.x + this.velocity.x + this.width <= canvas.width;
@@ -55,6 +65,9 @@ export default class Character {
     } else {
       this.velocity.y += GRAVITY;
     }
+
+    this.draw(canvasContext);
+    
   }
 
   attack() {

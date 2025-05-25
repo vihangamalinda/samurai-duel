@@ -1,5 +1,12 @@
 export default class Sprite {
-  constructor({ position, imageSrc, context, frames, scale = { x: 1, y: 1 } }) {
+  constructor({
+    position,
+    imageSrc,
+    context,
+    frames,
+    scale = { x: 1, y: 1 },
+    offset = { x: 0, y: 0 },
+  }) {
     this.position = position;
     this.context = context;
     this.image = new Image();
@@ -9,6 +16,7 @@ export default class Sprite {
     this.currentFrame = 0;
     this.framesElapsed = 0;
     this.frameHold = 10;
+    this.offset =offset
   }
 
   draw() {
@@ -23,11 +31,15 @@ export default class Sprite {
       0,
       this.image.width / this.frames,
       this.image.height,
-      this.position.x,
-      this.position.y,
+      this.position.x-this.offset.x,
+      this.position.y-this.offset.y,
       scaledWidth,
       scaledHeight
     );
+  }
+
+  getPositionUpdate(position) {
+    this.position = position;
   }
 
   update() {
