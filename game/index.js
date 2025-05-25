@@ -1,11 +1,9 @@
-import Character from "./src/character.js";
+import CustomObj from "./src/customObj.js";
 import {
   determineWinner,
   decreaseTimer,
   isAttackColliding,
-  imageSrc,
 } from "./src/utility.js";
-import Sprite from "./src/sprite.js";
 
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
@@ -26,83 +24,9 @@ canvas.height = 720;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const background = new Sprite({
-  position: { x: 0, y: 0 },
-  context: c,
-  imageSrc: imageSrc.backgroundImageSrc,
-  frames: 1,
-});
-
-const skelton = new Sprite({
-  position: { x: 200, y: 230 },
-  imageSrc: imageSrc.skeletonSrc,
-  context: c,
-  frames: 13,
-  scale: { x: 2, y: 4 },
-});
-
-const golem01 = new Sprite({
-  position: { x: 1000, y: 230 },
-  imageSrc: imageSrc.golemBlueSrc,
-  context: c,
-  frames: 13,
-  scale: { x: 3, y: 4 },
-});
-
-const golem02 = new Sprite({
-  position: { x: 900, y: 230 },
-  imageSrc: imageSrc.golemOrangeSrc,
-  context: c,
-  frames: 11,
-  scale: { x: 3, y: 4 },
-});
-const mushRoom = new Sprite({
-  position: { x: 600, y: 230 },
-  imageSrc: imageSrc.mushRoomSrc,
-  context: c,
-  frames: 24,
-  scale: { x: 2, y: 4 },
-});
-
-const PlayerOneSprite = new Sprite({
-  position: { x: 0, y: 0 },
-  context: c,
-  frames: 6,
-  scale: { x: 2, y: 4 },
-  imageSrc: imageSrc.warriorOneSrc,
-  offset: {
-    x: 110,
-    y: 200,
-  },
-});
-
-const PlayerTwoSprite = new Sprite({
-  position: { x: 0, y: 0 },
-  context: c,
-  frames: 8,
-  scale: { x: 2, y: 4 },
-  imageSrc: imageSrc.warriorTwoSrc,
-  offset: {
-    x: 160,
-    y: 305,
-  },
-});
-
-const player = new Character({
-  position: { x: 0, y: 0 },
-  velocity: { x: 0, y: 2 },
-  color: { body: "red", attackBox: "yellow" },
-  offset: { x: 0, y: 0 },
-  sprite: PlayerOneSprite,
-});
-
-const enemy = new Character({
-  position: { x: 500, y: 0 },
-  velocity: { x: 0, y: 2 },
-  color: { body: "white", attackBox: "purple" },
-  offset: { x: -50, y: 0 },
-  sprite: PlayerTwoSprite,
-});
+const customObj= new CustomObj(c);
+const {background,skelton,golem01,golem02,mushRoom} = customObj.objects.sprites;
+const {player,enemy} =customObj.objects.interactiveCharacters;
 
 // Horizontal -level movement tracking
 const keys = {
