@@ -1,7 +1,14 @@
 import Character from "./src/character.js";
-import { determineWinner, decreaseTimer,isAttackColliding } from "./src/utility.js";
+import {
+  determineWinner,
+  decreaseTimer,
+  isAttackColliding,
+} from "./src/utility.js";
+import Sprite from "./src/sprite.js";
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
+const backgroundImageSrc = "./assets/background-with-coluds.png";
+const skeletonSrc = "./assets/skeleton_01_white_die.png";
 
 const playerHealthBar = document.querySelector(".player-health");
 const enemyHealthBar = document.querySelector(".enemy-health");
@@ -18,6 +25,13 @@ canvas.width = 1280;
 canvas.height = 720;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
+
+const background = new Sprite({
+  position: { x: 0, y: 0 },
+  context: c,
+  imageSrc: backgroundImageSrc,
+  destination: { x: 0, y: 0 },
+});
 
 const player = new Character({
   position: { x: 0, y: 0 },
@@ -49,7 +63,7 @@ const keys = {
   },
 };
 
-decreaseTimer({ player1: player, player2: enemy});
+decreaseTimer({ player1: player, player2: enemy });
 
 function animate() {
   window.requestAnimationFrame(animate);
@@ -57,7 +71,10 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   const updateInfo = { canvasContext: c, canvas: canvas };
+  //background related updates
+  background.update();
 
+  // User interation related updates
   player.update(updateInfo);
   enemy.update(updateInfo);
 

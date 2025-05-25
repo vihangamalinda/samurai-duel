@@ -48,7 +48,7 @@ export default class Character {
     this.position.y += this.velocity.y;
 
     const isWithinCanvasBottom =
-      this.position.y + this.height + this.velocity.y >= canvas.height;
+      this.position.y + this.height + this.velocity.y >= canvas.height +GROUND_LEVEL;
 
     if (isWithinCanvasBottom) {
       this.velocity.y = 0;
@@ -66,3 +66,4 @@ export default class Character {
 }
 
 const GRAVITY = 0.7;
+const GROUND_LEVEL = -195;
