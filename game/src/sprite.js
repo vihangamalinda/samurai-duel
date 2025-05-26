@@ -42,6 +42,10 @@ export default class Sprite {
     this.position = position;
   }
 
+  changeAnimationRate(newHold) {
+    this.frameHold = newHold;
+  }
+
   update() {
     this.framesElapsed++;
 

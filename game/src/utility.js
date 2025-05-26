@@ -18,10 +18,12 @@ const determineWinner = ({ player1, player2 }) => {
   } else if (player1.health > player2.health) {
     // player 1 win
     message = "player 1 win";
+    player2.dead();
     console.log("player 1 win");
   } else {
     //player 2 win
     message = "player 2 win";
+    player1.dead();
     console.log("player 2 win");
   }
   resultEl.innerText = message;
@@ -65,39 +67,63 @@ const imageSrc = {
   golemOrangeSrc: "./assets/golem_1_attack.png",
   mushRoomSrc: "./assets/mushroom-attack-with-stun.png",
   warriorOneSrc: {
-    run: {
-      path: "./assets/warriorOne/Run.png",
+    left: {
+      path: "./assets/warriorOne/left.png",
+      frames: 6,
+    },
+    right: {
+      path: "./assets/warriorOne/right.png",
       frames: 6,
     },
     idle: {
-      path: "./assets/warriorOne/Idle.png",
+      path: "./assets/warriorOne/idle.png",
       frames: 10,
     },
     jump: {
-      path: "./assets/warriorOne/Jump.png",
+      path: "./assets/warriorOne/jump.png",
       frames: 2,
     },
     fall: {
       path: "./assets/warriorOne/fall.png",
       frames: 2,
     },
+    attack: {
+      path: "./assets/warriorOne/attack.png",
+      frames: 4,
+    },
+    death: {
+      path: "./assets/warriorOne/death.png",
+      frames: 9,
+    },
   },
   warriorTwoSrc: {
-    run: {
-      path: "./assets/warriorTwo/Run.png",
+    right: {
+      path: "./assets/warriorTwo/right.png",
+      frames: 8,
+    },
+    left: {
+      path: "./assets/warriorTwo/left.png",
       frames: 8,
     },
     idle: {
-      path: "./assets/warriorTwo/Idle.png",
+      path: "./assets/warriorTwo/idle.png",
       frames: 11,
     },
     jump: {
-      path: "./assets/warriorTwo/Jump.png",
+      path: "./assets/warriorTwo/jump.png",
       frames: 3,
     },
     fall: {
-      path: "./assets/warriorTwo/Fall.png",
+      path: "./assets/warriorTwo/fall.png",
       frames: 3,
+    },
+    attack: {
+      path: "./assets/warriorTwo/attack.png",
+      frames: 7,
+    },
+    death: {
+      path: "./assets/warriorTwo/death.png",
+      frames: 11,
     },
   },
 };

@@ -70,17 +70,20 @@ function animate() {
   //reset player's And enemey's x-axis velocity
   player.velocity.x = 0;
   enemy.velocity.x = 0;
-
-  player.idle();
-  enemy.idle();
+  if (!player.isAttacking && !player.isDead) {
+    player.idle();
+  }
+  if (!enemy.isAttacking && !enemy.isDead) {
+    enemy.idle();
+  }
 
   // Player's velocity update to perform movements
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = MOVEMENTS.left;
-    player.sprint();
+    player.left();
   } else if (keys.d.pressed && player.lastKey === "d") {
     player.velocity.x = MOVEMENTS.right;
-    player.sprint();
+    player.right();
   }
 
   if (player.velocity.y < 0) {
@@ -92,10 +95,10 @@ function animate() {
   // Enemy's velocity update to perform movements
   if (keys.arrowRight.pressed && enemy.lastKey === "ArrowRight") {
     enemy.velocity.x = MOVEMENTS.right;
-    enemy.sprint();
+    enemy.right();
   } else if (keys.arrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
     enemy.velocity.x = MOVEMENTS.left;
-    enemy.sprint();
+    enemy.left();
   }
 
   if (enemy.velocity.y < 0) {

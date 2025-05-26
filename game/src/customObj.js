@@ -52,11 +52,11 @@ export default class CustomObj {
       position: { x: 0, y: 0 },
       context: context,
       frames: imageSrc.warriorOneSrc.idle.frames,
-      scale: { x: 2, y: 4 },
+      scale: { x: 3, y: 5 },
       imageSrc: imageSrc.warriorOneSrc.idle.path,
       offset: {
-        x: 110,
-        y: 200,
+        x:180,
+        y: 280,
       },
     });
 
@@ -67,7 +67,7 @@ export default class CustomObj {
       scale: { x: 2, y: 4 },
       imageSrc: imageSrc.warriorTwoSrc.idle.path,
       offset: {
-        x: 160,
+        x: 140,
         y: 305,
       },
     });

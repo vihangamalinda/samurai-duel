@@ -14,8 +14,8 @@ export default class Character {
     this.lastKey;
     this.attackBox = {
       position: { x: position.x, y: position.y },
-      width: 100,
-      height: 50,
+      width: 130,
+      height: 80,
       offset,
     };
     this.color = color;
@@ -23,6 +23,7 @@ export default class Character {
     this.health = 100;
     this.sprite = sprite;
     this.movements = this._getMovements(movements);
+    this.isDead = false;
     console.log(this.movements);
   }
 
@@ -39,13 +40,13 @@ export default class Character {
   }
 
   draw(canvasContext) {
-    canvasContext.fillStyle = this.color.body;
-    canvasContext.fillRect(
-      this.position.x,
-      this.position.y,
-      this.width,
-      this.height
-    );
+    // canvasContext.fillStyle = this.color.body;
+    // canvasContext.fillRect(
+    //   this.position.x,
+    //   this.position.y,
+    //   this.width,
+    //   this.height
+    // );
 
     // this.sprite.update();
     const sprite = this.sprite;
@@ -86,19 +87,33 @@ export default class Character {
     this.draw(canvasContext);
   }
 
+  dead() {
+    this._updateMovementSprite("death");
+    this.isDead = true;
+    this.sprite.changeAnimationRate(50);
+  }
+
   attack() {
+    this._updateMovementSprite("attack");
     this.isAttacking = true;
+    const previousFrameHold = this.sprite.frameHold;
+    this.sprite.changeAnimationRate(5);
     setTimeout(() => {
       this.isAttacking = false;
-    }, 100);
+      this.sprite.changeAnimationRate(previousFrameHold);
+    }, 500);
   }
 
   jump() {
     this._updateMovementSprite("jump");
   }
 
-  sprint() {
-    this._updateMovementSprite("run");
+  left() {
+    this._updateMovementSprite("left");
+  }
+
+  right() {
+    this._updateMovementSprite("right");
   }
 
   idle() {
@@ -110,10 +125,6 @@ export default class Character {
   }
 
   _updateMovementSprite(movementType) {
-    if (movementType === "idle") {
-      debugger;
-    }
-
     const movement = this.movements[movementType];
     this.sprite.image = movement.image;
     this.sprite.frames = movement.frames;
