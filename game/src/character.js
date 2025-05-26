@@ -54,11 +54,11 @@ export default class Character {
     sprite.update();
 
     //Attack box
-    if (this.isAttacking) {
-      const { position, width, height, offset } = this.attackBox;
-      canvasContext.fillStyle = this.color.attackBox;
-      canvasContext.fillRect(position.x + offset.x, position.y, width, height);
-    }
+    // if (this.isAttacking) {
+    //   const { position, width, height, offset } = this.attackBox;
+    //   canvasContext.fillStyle = this.color.attackBox;
+    //   canvasContext.fillRect(position.x + offset.x, position.y, width, height);
+    // }
   }
 
   update({ canvasContext: canvasContext, canvas: canvas }) {
