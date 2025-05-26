@@ -1,5 +1,12 @@
 export default class Character {
-  constructor({ position, velocity, color = "red", offset, sprite }) {
+  constructor({
+    position,
+    velocity,
+    color = "red",
+    offset,
+    sprite,
+    movements,
+  }) {
     this.position = position;
     this.velocity = velocity;
     this.height = 150;
@@ -15,6 +22,16 @@ export default class Character {
     this.isAttacking;
     this.health = 100;
     this.sprite = sprite;
+    this.movements = this._getMovements(movements);
+    console.log(this.movements);
+  }
+
+  _getMovements(movements) {
+    for (const movement in movements) {
+      movements[movement].image = new Image();
+      movements[movement].image.src = movements[movement].path;
+    }
+    return movements;
   }
 
   getSprite(sprite) {
@@ -74,6 +91,32 @@ export default class Character {
     setTimeout(() => {
       this.isAttacking = false;
     }, 100);
+  }
+
+  jump() {
+    this._updateMovementSprite("jump");
+  }
+
+  sprint() {
+    this._updateMovementSprite("run");
+  }
+
+  idle() {
+    this._updateMovementSprite("idle");
+  }
+
+  fall() {
+    this._updateMovementSprite("fall");
+  }
+
+  _updateMovementSprite(movementType) {
+    if (movementType === "idle") {
+      debugger;
+    }
+
+    const movement = this.movements[movementType];
+    this.sprite.image = movement.image;
+    this.sprite.frames = movement.frames;
   }
 }
 

@@ -71,18 +71,37 @@ function animate() {
   player.velocity.x = 0;
   enemy.velocity.x = 0;
 
+  player.idle();
+  enemy.idle();
+
   // Player's velocity update to perform movements
   if (keys.a.pressed && player.lastKey === "a") {
     player.velocity.x = MOVEMENTS.left;
+    player.sprint();
   } else if (keys.d.pressed && player.lastKey === "d") {
     player.velocity.x = MOVEMENTS.right;
+    player.sprint();
+  }
+
+  if (player.velocity.y < 0) {
+    player.jump();
+  } else if (player.velocity.y > 0) {
+    player.fall();
   }
 
   // Enemy's velocity update to perform movements
   if (keys.arrowRight.pressed && enemy.lastKey === "ArrowRight") {
     enemy.velocity.x = MOVEMENTS.right;
+    enemy.sprint();
   } else if (keys.arrowLeft.pressed && enemy.lastKey === "ArrowLeft") {
     enemy.velocity.x = MOVEMENTS.left;
+    enemy.sprint();
+  }
+
+  if (enemy.velocity.y < 0) {
+    enemy.jump();
+  } else if (enemy.velocity.y > 0) {
+    enemy.fall();
   }
 
   // Detect collision

@@ -78,6 +78,7 @@ export default class CustomObj {
       color: { body: "red", attackBox: "yellow" },
       offset: { x: 0, y: 0 },
       sprite: PlayerOneSprite,
+      movements:imageSrc.warriorOneSrc,
     });
 
     const enemy = new Character({
@@ -86,6 +87,7 @@ export default class CustomObj {
       color: { body: "white", attackBox: "purple" },
       offset: { x: -50, y: 0 },
       sprite: PlayerTwoSprite,
+      movements:imageSrc.warriorTwoSrc,
     });
     return {
       sprites: {

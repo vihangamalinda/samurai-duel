@@ -16,7 +16,7 @@ export default class Sprite {
     this.currentFrame = 0;
     this.framesElapsed = 0;
     this.frameHold = 10;
-    this.offset =offset
+    this.offset = offset;
   }
 
   draw() {
@@ -31,8 +31,8 @@ export default class Sprite {
       0,
       this.image.width / this.frames,
       this.image.height,
-      this.position.x-this.offset.x,
-      this.position.y-this.offset.y,
+      this.position.x - this.offset.x,
+      this.position.y - this.offset.y,
       scaledWidth,
       scaledHeight
     );

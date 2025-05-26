@@ -73,6 +73,14 @@ const imageSrc = {
       path: "./assets/warriorOne/Idle.png",
       frames: 10,
     },
+    jump: {
+      path: "./assets/warriorOne/Jump.png",
+      frames: 2,
+    },
+    fall: {
+      path: "./assets/warriorOne/fall.png",
+      frames: 2,
+    },
   },
   warriorTwoSrc: {
     run: {
@@ -82,6 +90,14 @@ const imageSrc = {
     idle: {
       path: "./assets/warriorTwo/Idle.png",
       frames: 11,
+    },
+    jump: {
+      path: "./assets/warriorTwo/Jump.png",
+      frames: 3,
+    },
+    fall: {
+      path: "./assets/warriorTwo/Fall.png",
+      frames: 3,
     },
   },
 };
